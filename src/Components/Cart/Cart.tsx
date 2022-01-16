@@ -2,19 +2,20 @@ import React, { Fragment, useContext, useState } from "react";
 import "Components/Cart/Cart.scss";
 import { ClassName } from "Config/Util/constants";
 import Modal from "Components/Layout/Modal/Modal";
-import CartContext from "Store/CartContext";
+import CartContext from "Store/Context/CartContext";
 import CartItem from "./CartItem/CartItem";
 import Checkout from "./Checkout/Checkout";
 import axios from "axios";
 
 
 export default function Cart (props: any) {
-
+    
     const cartCtx = useContext<any>(CartContext);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [didSubmit, setDidSubmit] = useState(false);
     const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`
-    const hasItems = cartCtx.items.length > 0;
+    const hasItems = !  cartCtx.isEmpty();
+    
 
     const [isCheckout, setIsCheckout] = useState(false)
 
@@ -66,7 +67,7 @@ export default function Cart (props: any) {
             <span>{totalAmount}</span>
         </div>
 
-    const cartCheckout = isCheckout && !cartCtx.isEmpty() ?  <Checkout onConfirm={submitHandler} onCancel={props.onClose}/> : modalActions
+    const cartCheckout = isCheckout && hasItems ?  <Checkout onConfirm={submitHandler} onCancel={props.onClose}/> : modalActions
 
     const cartModalContent = <Fragment>
             {cartItems}
@@ -77,17 +78,13 @@ export default function Cart (props: any) {
     const isSubmittingModalContent = <p>Sending order date...</p>;
 
     const didSubmitModalContent = <Fragment>
-            <p>Successfully sent the order!</p>
-            <button onClick={props.onClose} className={ClassName.BTN_ALT}>Close</button>
-        </Fragment>
+        <p>Successfully sent the order!</p>
+        <button onClick={props.onClose} className={ClassName.BTN_ALT}>Close</button>
+    </Fragment>
     
-    const Content = () => <Fragment>{ !isSubmitting && !didSubmit && cartModalContent }
-            { isSubmitting && isSubmittingModalContent }
-            { !isSubmitting && didSubmit && didSubmitModalContent }
-        </Fragment>
-
-
     return <Modal onClose={props.onClose}>    
-            <Content/>
-        </Modal>
+        { !isSubmitting && !didSubmit && cartModalContent }
+        { isSubmitting && isSubmittingModalContent }
+        { !isSubmitting && didSubmit && didSubmitModalContent }
+    </Modal>
 }

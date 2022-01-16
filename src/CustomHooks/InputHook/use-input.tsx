@@ -1,12 +1,12 @@
 import { Str } from "Config/Util/constants";
 import React, { useState } from "react";
 
-export default function useInput(validateValue: any) {
+export default function useInput(validateValue: (value: string) => boolean) {
     const [enteredValue, setEnteredValue] = useState(Str.EMPTY);
     const [isTouched, setIsTouched] = useState(false);
 
     // const isValid = enteredValue.trim() !== Str.EMPTY;
-    const isValid = validateValue(enteredValue.trim());
+    const isValid = validateValue(enteredValue);
     const hasError = !isValid && isTouched;
 
     const valueChangeHandler = (event: any) => {
@@ -20,7 +20,11 @@ export default function useInput(validateValue: any) {
     const reset = () => {
         setEnteredValue(Str.EMPTY);
         setIsTouched(false);
-    }
+    };
+
+    const setTouched = (isTouched:boolean) => {
+        setIsTouched(isTouched)
+    };
 
     return {
         value: enteredValue,
@@ -28,6 +32,7 @@ export default function useInput(validateValue: any) {
         hasError,
         valueChangeHandler,
         inputBlurHandler,
+        setTouched,
         reset
     };
 }
