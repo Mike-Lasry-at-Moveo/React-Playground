@@ -1,7 +1,17 @@
 enum Actions {
     ADD = 'add-action',
+    DEC = 'decrement-action',
+    INC = 'increment-action',
     REMOVE = 'remove-action',
+    RST = 'reset-action',
     CLEAR = 'clear-action',
+    TOG = 'toggle-action',
+    
+}
+
+enum StateSlice{
+    COUNTER = 'counter',
+    AUTH = 'authentication',
 }
 
 enum Title{
@@ -54,6 +64,7 @@ enum ClassName {
     CART_ITEM = 'cartItem',
     CART_ITEMS = 'cartItems',
     
+    COUNTER = 'counter',
     CART = 'cart',
     CARD = 'card',
     BTN = 'button',
@@ -90,11 +101,12 @@ enum ClassName {
 }
 
 export {
-    Errors,
-    ClassName,
-    Str,
+    StateSlice,
     InputType,
+    ClassName,
     Actions,
-    Title,
+    Errors,
     Fields,
+    Title,
+    Str,
 };

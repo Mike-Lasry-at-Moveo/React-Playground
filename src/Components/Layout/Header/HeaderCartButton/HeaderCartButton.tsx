@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useEffect, useState } from "react";
 import "Components/Layout/Header/HeaderCartButton/HeaderCartButton.scss";
 import CartIcon from "./CartIcon/CartIcon";
 import { ClassName } from "Config/Util/constants";
-import CartContext from "Store/CartContext";
+import CartContext from "Store/Context/CartContext";
 
 export default React.memo(function HeaderCartButton (props: any) {
     const cartCtx = useContext(CartContext);

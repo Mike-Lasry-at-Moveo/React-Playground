@@ -1,6 +1,6 @@
 import { Actions } from "Config/Util/constants";
 import { useReducer } from "react";
-import CartContext from "Store/CartContext";
+import CartContext from "Store/Context/CartContext";
 
 const defaultCartState = {
     items: [],
@@ -80,7 +80,7 @@ export default function CartProvider (props:any) {
     }
 
     const cartIsEmptyHandler = () => {
-        return cartState.items.length !== 0;
+        return cartState.items.length === 0;
     }
 
     const cartContext = {

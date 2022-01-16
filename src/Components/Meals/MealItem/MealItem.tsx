@@ -2,7 +2,7 @@ import React, { Fragment, useContext } from "react";
 import "Components/Meals/MealItem/MealItem.scss"
 import { ClassName } from "Config/Util/constants"
 import MealItemForm from "Components/Meals/MealItemForm/MealItemForm";
-import CartContext from "Store/CartContext";
+import CartContext from "Store/Context/CartContext";
 
 export default function MealItem (props: any) {
     const cartCtx = useContext(CartContext);
