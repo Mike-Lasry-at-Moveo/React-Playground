@@ -1,0 +1,48 @@
+.cartButton {
+    cursor: pointer;
+    font: inherit;
+    border: none;
+    background-color: #4d1601;
+    color: white;
+    padding: 0.75rem 3rem;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 25px;
+    font-weight: bold;
+    @media (min-width: 450px){
+        display: flex;
+    }
+}
+
+.cartButton:hover, .cartButton:active{
+    background-color: #2c0d00;
+}
+
+.cartCount{
+    background-color: rgb(173, 28, 12);
+    border-radius: 25px;  
+    padding: 3px;
+}
+
+.bump {
+    animation: bump 300ms ease-out;
+}
+
+@keyframes bump {
+    0%{
+        transform: scale(1);
+    }
+    10%{
+        transform: scale(0.9);
+    }
+    30%{
+        transform: scale(1.1);
+    }
+    50%{
+        transform: scale(1.15);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
