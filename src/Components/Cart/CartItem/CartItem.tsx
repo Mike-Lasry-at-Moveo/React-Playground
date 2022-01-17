@@ -3,8 +3,7 @@ import "Components/Cart/CartItem/CartItem.scss";
 import { ClassName } from "Config/Util/constants";
 
 export default function CartItem (props: any) {
-const price = `$${props.price.toFixed(2)}`;
-
+    const price = `$${props.price.toFixed(2)}`;
     return <Fragment>
         <li className={ClassName.CART_ITEM}>
             <div>

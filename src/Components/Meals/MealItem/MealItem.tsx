@@ -4,19 +4,19 @@ import { ClassName } from "Config/Util/constants"
 import MealItemForm from "Components/Meals/MealItemForm/MealItemForm";
 import CartContext from "Store/Context/CartContext";
 
-export default function MealItem (props: any) {
+export default React.memo(function MealItem (props: any) {
+    
     const cartCtx = useContext(CartContext);
 
     const price = `$${props.meal.price.toFixed(2)}`;
 
     const addToCartHandler = (amount: number) => {
-        const newItem = {
+        cartCtx.addItem({
             id: props.meal._id,
             name: props.meal.name,
             amount: amount,
             price: props.meal.price
-        };
-        cartCtx.addItem(newItem);
+        }); 
     }
 
     return <li className={ClassName.MEAL}>
@@ -29,4 +29,4 @@ export default function MealItem (props: any) {
             <MealItemForm onAddToCart={addToCartHandler} meal={props.meal}/>
         </div>
     </li>
-}
+});
