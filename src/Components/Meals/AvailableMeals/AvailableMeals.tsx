@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useMemo, useState } from "react";
 import "Components/Meals/AvailableMeals/AvailableMeals.scss";
 import { Meals } from "Assets/Data/meals";
 import { ClassName, Errors } from "Config/Util/constants";
@@ -18,10 +18,7 @@ export default function AvailableMeals () {
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState<any>(null);
 
-    const mealsList = meals.map(meal => {
-            return <MealItem id={meal._id} key={meal._id} meal={meal}/>
-        }
-    )
+    const mealsList = meals.map(meal => <MealItem id={meal._id} key={meal._id} meal={meal}/>)
 
     const fetchMeals = async () => {
         let responseWrapper = await axios.get("http://127.0.0.1:3500/api/meals");

@@ -4,6 +4,12 @@
     align-items: center;
 
     button{
-        margin:10px;
+        background-color: transparent;
+        border: 1px solid #8a2b06;
+        border-radius: 25px;
+        cursor: pointer;
+        font: inherit;
+        margin-left: 1rem;
+        padding: 0.5rem 2rem;
     }
 }
